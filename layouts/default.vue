@@ -1,0 +1,26 @@
+<template>
+  <div class="reticula">
+    <Nuxt />
+  </div>
+</template>
+
+<script>
+import FloatingMenu from "../components/FloatingMenu.vue";
+export default {
+  components: { FloatingMenu },
+};
+</script>
+
+<style lang="scss">
+.reticula {
+  display: grid;
+  grid-template-columns: repeat(4, 72px);
+  grid-column-gap: 16px;
+  div {
+    &:first-child {
+      grid-column: 1/5;
+    }
+  }
+
+}
+</style>
