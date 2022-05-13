@@ -35,29 +35,36 @@ export default {
 
 <style lang="scss" scoped>
 .input_form{
-  display:flex;
   width: 248px;
   height: 48px;
-  align-items: center;
-  justify-content: stretch;
-  border-radius: 8px;
-  @apply bg-B3 px-5;
-  svg{
-    &:first-child{
-      flex-shrink: 0;
-    }
+  position: relative;
+  > svg{
+    pointer-events: none;
+    position: absolute;
+    left: 20px;
+    top: 12px
   }
   button{
-    flex-shrink: 0;
+    position: absolute;
+    right: 20px;
+    top: 12px; 
   }
   input{
     flex:1;
     width: 100%;
-    @apply bg-B3 mx-4;
+    height: 100%;
+    @apply bg-B3 px-[60px];
+    border-radius: 8px;
     &:focus {
-      @apply outline-none
+      @apply outline-none bg-P10 text-P5;
+      
+    }
+    // COMO SE CAMBIA?
+    &:focus ~ svg path {
+      display: none;
     }
     
   }
+
 }
 </style>

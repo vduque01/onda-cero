@@ -1,13 +1,14 @@
 <template>
   <button
     :class="{
-      'primario': tipo == 'primario',
-      'secundario': tipo == 'secundario',
+      primario: tipo == 'primario',
+      secundario: tipo == 'secundario',
       'primario-oscuro': tipo == 'primario-oscuro',
-      'compacto': tamaño == 'compacto',
-      'pequeño': tamaño == 'pequeño',
-      'mediano': tamaño == 'mediano',
-      'grande': tamaño == 'grande',
+      compacto: tamaño == 'compacto',
+      pequeño: tamaño == 'pequeño',
+      mediano: tamaño == 'mediano',
+      grande: tamaño == 'grande',
+      solo_icono: tamaño == 'solo_icono',
     }"
   >
     <slot />
@@ -21,7 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 button {
   text-transform: uppercase;
   font-weight: bold;
@@ -70,7 +70,7 @@ button {
       @apply border-P8  text-P8;
     }
   }
-  &.compacto{
+  &.compacto {
     font-size: 13px;
     line-height: 150%;
     @apply py-[6px] px-3;
@@ -80,10 +80,13 @@ button {
     line-height: 150%;
     @apply py-[10px] px-4;
   }
-  &.mediano{
+  &.mediano {
     font-size: 16px;
     line-height: 150%;
     @apply py-3 px-5;
+  }
+  &.solo_icono {
+    @apply py-2 px-5;
   }
 }
 </style>

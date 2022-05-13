@@ -1,6 +1,7 @@
 <template>
   <div class="reticula">
     <Nuxt />
+    <floating-menu/>
   </div>
 </template>
 
