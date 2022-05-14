@@ -8,7 +8,9 @@
       pequeño: tamaño == 'pequeño',
       mediano: tamaño == 'mediano',
       grande: tamaño == 'grande',
-      solo_icono: tamaño == 'solo_icono',
+      solo_icono_medio: tamaño == 'solo_icono_medio',
+      solo_icono_compacto: tamaño == 'solo_icono_compacto',
+      solo_icono_pequeño: tamaño == 'solo_icono_pequeño'
     }"
   >
     <slot />
@@ -26,8 +28,12 @@ button {
   text-transform: uppercase;
   font-weight: bold;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   &.primario {
     @apply bg-G7 text-B2;
+    // preguntar como cambiar color de los svg de dentro de los botones, aqui y en los inputs
     &:hover {
       @apply bg-G6 text-B1;
     }
@@ -85,8 +91,14 @@ button {
     line-height: 150%;
     @apply py-3 px-5;
   }
-  &.solo_icono {
-    @apply py-2 px-5;
+  &.solo_icono_compacto {
+    @apply p-2;
+  }
+  &.solo_icono_medio {
+    @apply p-2;
+  }
+  &.solo_icono_pequeño {
+    @apply p-[10px];
   }
 }
 </style>

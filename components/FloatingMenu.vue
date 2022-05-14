@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="player" v-show="isPlaying">
+    <!-- <div class="player" v-show="isPlaying">
       <img src="" alt="thumbnail" />
       <div class="podcast_data">
         <p>Nombre del episodio</p>
         <p>Nombre del podcast</p>
       </div>
       <button>Play button</button>
-    </div>
+    </div> -->
     <div class="navigation">
-      <boton :tipo="'primario'" :tamaño="'solo_icono'">
+      <boton :tipo="'primario'" :tamaño="'solo_icono_medio'">
         <nuxt-link to="/">
           <svg
             width="32"
@@ -28,7 +28,7 @@
           </svg>
         </nuxt-link>
       </boton>
-      <boton :tipo="'primario'" :tamaño="'solo_icono'" disabled>
+      <boton :tipo="'primario'" :tamaño="'solo_icono_medio'" disabled>
         <svg
           width="32"
           height="32"
@@ -52,7 +52,7 @@
           />
         </svg>
       </boton>
-      <boton :tipo="'primario'" :tamaño="'solo_icono'" disabled>
+      <boton :tipo="'primario'" :tamaño="'solo_icono_medio'" disabled>
         <svg
           width="32"
           height="32"

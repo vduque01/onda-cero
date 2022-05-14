@@ -1,10 +1,11 @@
 <template>
-  <div class="categoria">{{categoria}}</div>
+  <div class="categoria">
+    <slot />
+  </div>
 </template>
 
 <script>
 export default {
-    props: ["categoria"],
 }
 </script>
 
