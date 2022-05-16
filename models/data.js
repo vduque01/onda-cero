@@ -10,18 +10,24 @@ export const podcasts=
       episodios: [
         {
           id: 0,
+          programa: "Estirando el chicle",
+          idPrograma: 0,
           nombre: "E01 MONETIZAR LAS LÁGRIMAS con ELVIRA SASTRE",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E01",
         },
         {
           id: 1,
+          programa: "Estirando el chicle",
+          idPrograma: 0,
           nombre: "E02 EL ÉXITO CON PAULA USERO Y CAROL ROVIRA",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E02",
         },
         {
           id: 2,
+          programa: "Estirando el chicle",
+          idPrograma: 0,
           nombre: "E03 CAGARSE DE MIEDO",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E03",
@@ -38,18 +44,24 @@ export const podcasts=
       episodios: [
         {
           id: 0,
+          programa: "La pija y la quinqui",
+          idPrograma: 1,
           nombre: "E01 TÓMATELO CON HUMOR",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E01",
         },
         {
           id: 1,
+          programa: "La pija y la quinqui",
+          idPrograma: 1,
           nombre: "E02 HAZLO POR LA ANÉCDOTA",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E02",
         },
         {
           id: 2,
+          programa: "La pija y la quinqui",
+          idPrograma: 1,
           nombre: "E03 NO SOMOS TAN BUENAS",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E03",
@@ -66,18 +78,24 @@ export const podcasts=
       episodios: [
         {
           id: 0,
+          programa: "El sentido de la birra",
+          idPrograma: 2,
           nombre: "E01 SARA RUBAYO",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E01",
         },
         {
           id: 1,
+          programa: "El sentido de la birra",
+          idPrograma: 2,
           nombre: "E02 JORGE DREXLER",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E02",
         },
         {
           id: 2,
+          programa: "El sentido de la birra",
+          idPrograma: 2,
           nombre: "E03 BELINDA WASHINGTON",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E03",
@@ -94,18 +112,24 @@ export const podcasts=
       episodios: [
         {
           id: 0,
+          programa: "No te lo habías preguntado",
+          idPrograma: 3,
           nombre: "E01 ¿CÓMO ERA EL DÍA A DÍA DE UN CABALLERO MEDIEVAL?",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E01",
         },
         {
           id: 1,
+          programa: "No te lo habías preguntado",
+          idPrograma: 3,
           nombre: "E02 ¿QUIÉN SE LLEVA LOS ROYALTIES DEL LIBRO DE HITLER?",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E02",
         },
         {
           id: 2,
+          programa: "No te lo habías preguntado",
+          idPrograma: 3,
           nombre: "E03 ¿CÓMO ERA UN MAL BARRIO DE LA ANTIGUA ROMA?",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E03",
@@ -122,18 +146,24 @@ export const podcasts=
       episodios: [
         {
           id: 0,
+          programa: "Todo me pasa a mí",
+          idPrograma: 4,
           nombre: "E01 EL ROCE DE LA LEY DE PORTILLO",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E01",
         },
         {
           id: 1,
+          idPrograma: 4,
+          programa: "Todo me pasa a mí",
           nombre: "E02 EL MALENTENDIDO DE ENRIQUE ALEX",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E02",
         },
         {
           id: 2,
+          programa: "Todo me pasa a mí",
+          idPrograma: 4,
           nombre: "E03 LA PEOR NOCHE DE JUDITH TIRAL",
           duracion: "1h 10min",
           descripcion: "Esta es la descripción del E03",
@@ -142,3 +172,24 @@ export const podcasts=
     },
   ]
 ;
+
+export const playlists = [
+  {
+    nombre: "HUMOR",
+    id:0,
+    autor: "Usuario 1",
+    duracion: "9h 56min",
+    descripcion: "Esta es la descripción de la lista",
+    podcastsLista: podcasts.filter((podcast) => {
+      return podcast.categoria == "Humor";
+    })
+  },
+]
+
+
+export const users = [
+  {
+    usuario: "vduque",
+    contraseña: "contraseña"
+  }
+]

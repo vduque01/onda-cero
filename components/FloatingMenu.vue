@@ -10,7 +10,7 @@
     </div> -->
     <div class="navigation">
       <boton :tipo="'primario'" :tamaño="'solo_icono_medio'">
-        <nuxt-link to="/">
+        <nuxt-link to="/home">
           <svg
             width="32"
             height="32"

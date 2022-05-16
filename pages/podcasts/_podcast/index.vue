@@ -90,7 +90,7 @@ export default {
   },
   computed: {
     ...mapState({
-      podcasts: (state) => state.main.podcasts,
+      podcasts: (state) => state.podcasts,
     }),
   },
 };

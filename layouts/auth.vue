@@ -1,16 +1,16 @@
 <template>
-  <div class="reticula">
+    <div class="reticula">
     <Nuxt />
-    <floating-menu />
   </div>
 </template>
 
 <script>
 export default {
-};
+
+}
 </script>
 
-<style lang="scss">
+<style  lang="scss">
 .reticula {
   display: grid;
   grid-template-columns: repeat(4, 72px);

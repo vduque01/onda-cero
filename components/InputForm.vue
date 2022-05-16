@@ -1,7 +1,17 @@
 <template>
   <div class="input_form">
     <slot />
-    <input type="text" />
+    <input
+      type="text"
+      :placeholder="`${placeholder}`"
+      :class="{
+        hasNoIcons: (hasIcon = true),
+        hasRightIcon: hasRightIcon == true,
+        hasLeftIcon: hasLeftIcon == true,
+        
+      }" 
+      @input="handleInput"
+    />
     <button v-show="isPassword">
       <svg
         width="20"
@@ -29,42 +39,66 @@
 
 <script>
 export default {
-  props: ["isPassword"],
+  props: [
+    "isPassword",
+    "placeholder",
+    "hasNoIcons",
+    "hasRightIcon",
+    "hasLeftIcon",
+    'value'
+  ],
+  data(){
+    return{
+      content: this.value
+    }
+  },
+  methods:{
+    handleInput (e) {
+      this.$emit('input', this.content)
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.input_form{
+.input_form {
   width: 248px;
   height: 48px;
   position: relative;
-  > svg{
+  > svg {
     pointer-events: none;
     position: absolute;
     left: 20px;
-    top: 12px
+    top: 12px;
   }
-  button{
+  button {
     position: absolute;
     right: 20px;
-    top: 12px; 
+    top: 12px;
   }
-  input{
-    flex:1;
+  input {
+    flex: 1;
     width: 100%;
     height: 100%;
-    @apply bg-B3 px-[60px];
+    @apply bg-B3;
     border-radius: 8px;
+    &.hasNoIcons {
+      @apply px-5;
+    }
+    &.hasRightIcon {
+      @apply  pl-5 pr-[60px];
+    }
+    &.hasLeftIcon {
+      @apply  pr-5 pl-[60px] ;
+    }
+
     &:focus {
       @apply outline-none bg-P10 text-P5;
-      
     }
     // COMO SE CAMBIA?
     &:focus ~ svg path {
       display: none;
     }
-    
   }
-
 }
 </style>
