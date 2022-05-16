@@ -1,10 +1,11 @@
 <template>
   <div>
+    <img :src="`/${playlists[playlistNumber].src}`" alt="" />
     <h2>{{ playlists[playlistNumber].nombre }}</h2>
     <p class="pequeño bold">Hecha por {{ playlists[playlistNumber].autor }}</p>
     <p class="pequeño">{{ playlists[playlistNumber].duracion }}</p>
     <p>{{ playlists[playlistNumber].descripcion }}</p>
-    <boton :tipo="'primario'" :tamaño="'pequeño'">
+    <boton :tipo="'primario'" :tamaño="'pequeño'" @click.native="reproducir()">
       PLAY
       <svg
         width="16"
@@ -79,10 +80,11 @@
     <div class="episodios">
       <div class="episodio" v-for="(episodio, i) in returnEpisodios()" :key="i">
         <nuxt-link :to="`/podcasts/${episodio.idPrograma}/${episodio.id}`">
-          <card-horizontal>
-            <p>{{ episodio.nombre }}</p>
-            <p>{{ episodio.programa }}</p>
-          </card-horizontal>
+          <card-horizontal
+            :src="`/podcasts/${episodio.idPrograma}.jpg`"
+            :texto1="`${episodio.nombre}`"
+            :texto2="`${episodio.programa}`"
+          />
         </nuxt-link>
       </div>
     </div>
@@ -90,9 +92,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import CardHorizontal from "../../../components/CardHorizontal.vue";
 export default {
+  layout: "playlist",
   components: { CardHorizontal },
   data: function () {
     return {
@@ -101,11 +104,14 @@ export default {
   },
   computed: {
     ...mapState({
-      podcasts: (state) => state.main.podcasts,
-      playlists: (state) => state.main.playlists,
+      podcasts: (state) => state.podcasts,
+      playlists: (state) => state.playlists,
     }),
   },
   methods: {
+    ...mapMutations({
+      reproducir: "reproducir",
+    }),
     returnEpisodios() {
       const arrayEpisodiosLista = [];
       const podcastsLista = this.playlists[this.playlistNumber].podcastsLista;

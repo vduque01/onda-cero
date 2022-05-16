@@ -8,6 +8,7 @@ export const state = () => {
     playlists: playlists,
     users: users,
     isLoggedIn: false,
+    isPlaying: false,
   };
 };
 
@@ -48,6 +49,11 @@ export const mutations = {
 
     // state.isLoggedIn = true;
   },
+  reproducir(state) {
+    state.isPlaying = true;
+    console.log(state.isPlaying)
+  }
+
 };
 
 export const actions = {};

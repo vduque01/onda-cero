@@ -1,15 +1,55 @@
 <template>
-  <div>
-    <!-- <div class="player" v-show="isPlaying">
-      <img src="" alt="thumbnail" />
-      <div class="podcast_data">
-        <p>Nombre del episodio</p>
-        <p>Nombre del podcast</p>
+  <div class="navigation">
+    <div class="player" v-if="reproduciendo()">
+      <div class="toggle">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 10.5L8 5.5L13 10.5"
+            stroke="white"
+            stroke-width="1.8"
+            stroke-linecap="square"
+          />
+        </svg>
       </div>
-      <button>Play button</button>
-    </div> -->
-    <div class="navigation">
-      <boton :tipo="'primario'" :tamaño="'solo_icono_medio'">
+      <div class="player_info">
+        <div class="player_img">
+          <img :src="`/${podcasts[1].src}`" alt="" />
+        </div>
+        <div class="player_name">
+          <p class="bold">{{ podcasts[1].episodios[1].nombre }}</p>
+          <p class="pequeño bold">{{ podcasts[1].nombre }}</p>
+        </div>
+        <Boton :tipo="'primario'" :tamaño="'solo_icono_medio'">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 3L27 16L6 29V3Z"
+              stroke="#325340"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </Boton>
+      </div>
+    </div>
+    <div class="botones">
+      <boton
+        class="boton"
+        id="boton1"
+        :tipo="'primario'"
+        :tamaño="'solo_icono_medio'"
+      >
         <nuxt-link to="/home">
           <svg
             width="32"
@@ -28,7 +68,13 @@
           </svg>
         </nuxt-link>
       </boton>
-      <boton :tipo="'primario'" :tamaño="'solo_icono_medio'" disabled>
+      <boton
+        class="boton"
+        id="boton2"
+        :tipo="'primario'"
+        :tamaño="'solo_icono_medio'"
+        disabled
+      >
         <svg
           width="32"
           height="32"
@@ -52,7 +98,13 @@
           />
         </svg>
       </boton>
-      <boton :tipo="'primario'" :tamaño="'solo_icono_medio'" disabled>
+      <boton
+        class="boton"
+        id="boton3"
+        :tipo="'primario'"
+        :tamaño="'solo_icono_medio'"
+        disabled
+      >
         <svg
           width="32"
           height="32"
@@ -88,10 +140,73 @@
 </template>
 
 <script>
-
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      isPlaying: (state) => state.isPlaying,
+      podcasts: (state) => state.podcasts,
+    }),
+  },
+  methods: {
+    reproduciendo() {
+      const Playing = this.isPlaying;
+      console.log(Playing);
+      return Playing;
+    },
+  },
+};
 </script>
 
-<style>
-
-
+<style lang="scss" scoped>
+.navigation {
+  @apply flex flex-col px-4 pb-4 bg-B2 fixed bottom-0 rounded-t-2xl;
+  left: 50%;
+  width: 368px;
+  margin-left: -184px;
+  .player {
+    @apply flex flex-col mt-3;
+    align-items: center;
+    gap: 8px;
+    .player_info {
+      @apply flex w-full;
+      align-items: center;
+      gap: 12px;
+      .player_img {
+        img {
+          width: 48px;
+        }
+      }
+      .player_name {
+        flex-grow: 1;
+        p {
+          width: 216px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .pequeño {
+          @apply text-G7;
+        }
+      }
+    }
+  }
+  .botones {
+    @apply flex flex-row mt-4;
+    .boton {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+    }
+    #boton1 {
+      @apply rounded-r-none;
+    }
+    #boton2 {
+      @apply rounded-none;
+    }
+    #boton3 {
+      @apply rounded-l-none;
+    }
+  }
+}
 </style>

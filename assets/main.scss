@@ -35,17 +35,14 @@ p{
     color: white;
     font-size: 16px;
     line-height: 150%;
+    &.bold{
+        font-weight: bold;
+    }
     &.grande{
         font-size: 19px;
-        &.bold{
-            font-weight: bold;
-        }
     }
     &.pequeño{
         font-size: 13px;
-        &.bold{
-            font-weight: bold;
-        }
     }
     &.extrapequeño{
         font-size: 11px;

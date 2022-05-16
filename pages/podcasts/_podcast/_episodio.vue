@@ -1,8 +1,11 @@
 <template>
   <div>
-    <p class="pequeño">{{ podcasts[podcastNumber].episodios[episodeNumber].duracion }}</p>
+    <img :src="`/${podcasts[podcastNumber].src}`" alt="" />
+    <p class="pequeño">
+      {{ podcasts[podcastNumber].episodios[episodeNumber].duracion }}
+    </p>
     <h3>{{ podcasts[podcastNumber].episodios[episodeNumber].nombre }}</h3>
-    <boton :tipo="'primario'" :tamaño="'pequeño'">
+    <boton :tipo="'primario'" :tamaño="'pequeño'" @click.native="reproducir()">
       PLAY
       <svg
         width="16"
@@ -133,8 +136,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
+  layout: "episodio",
   data() {
     return {
       episodeNumber: this.$route.params.episodio,
@@ -144,6 +148,11 @@ export default {
   computed: {
     ...mapState({
       podcasts: (state) => state.podcasts,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      reproducir: "reproducir",
     }),
   },
 };
