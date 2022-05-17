@@ -1,7 +1,6 @@
 <template>
   <div class="main_holder">
-    <!-- <SplashPage :isLoading="isLoading" /> -->
-
+    <splash-page :isLoading="isLoading" />
     <div class="holder">
       <div class="main">
         <div class="greet">
@@ -10,8 +9,7 @@
           </section-name>
           <p class="grande">Bienvenido, Víctor</p>
         </div>
-        <deslizador/>
-
+        <deslizador />
         <div class="trending">
           <div class="section_header">
             <h3>Lo más escuchado</h3>
@@ -37,7 +35,6 @@
 
           <div class="podcasts">
             <div class="podcast" v-for="(podcast, i) in podcasts" :key="i">
-              <!-- ¿Cómo se puede quitar aquí _podcast? -->
               <nuxt-link :to="`/podcasts/${podcast.id}`">
                 <card-vertical
                   :src="`${podcast.src}`"
@@ -79,12 +76,13 @@
                   podcast.episodios[podcast.episodios.length - 1].id
                 }`"
               >
-                <card-horizontal :src="podcast.src" :texto1="podcast.episodios[podcast.episodios.length - 1].nombre" :texto2=" podcast.nombre" />
-                  <!-- <p>
-                    {{ podcast.episodios[podcast.episodios.length - 1].nombre }}
-                  </p>
-                  <p>{{ podcast.nombre }}</p>
-                </card-horizontal> -->
+                <card-horizontal
+                  :src="podcast.src"
+                  :texto1="
+                    podcast.episodios[podcast.episodios.length - 1].nombre
+                  "
+                  :texto2="podcast.nombre"
+                />
               </nuxt-link>
             </div>
           </div>
@@ -115,7 +113,11 @@
           <div class="listas">
             <div class="lista" v-for="(playlist, i) in playlists" :key="i">
               <nuxt-link :to="`/playlists/${playlist.id}`">
-                <card-vertical :src="`${playlist.src}`" :tipo="'lista'" :texto1="`${playlist.nombre}`" />
+                <card-vertical
+                  :src="`${playlist.src}`"
+                  :tipo="'lista'"
+                  :texto1="`${playlist.nombre}`"
+                />
               </nuxt-link>
             </div>
           </div>
@@ -127,15 +129,10 @@
 
 <script>
 import { mapState } from "vuex";
-import CardVertical from "../components/CardVertical.vue";
-import Carousel from "../components/Deslizador.vue";
-import Deslizador from "../components/Deslizador.vue";
 export default {
   data() {
     return {
-      isLoggedIn: true,
-      // isLoading: true
-      // isPlaying: true,
+      isLoading: true,
     };
   },
   name: "IndexPage",
@@ -143,24 +140,10 @@ export default {
     ...mapState({
       podcasts: (state) => state.podcasts,
       playlists: (state) => state.playlists,
+      isLoggedIn: (state) => state.isLoggedIn,
     }),
   },
-  mounted() {
-    // setTimeout(() => {
-    //   this.isLoading = false;
-    // }, 3000);
-  },
   methods: {
-    // Función que coge todos los últimos episodios de cada podcast
-    // nuevosEpisodios() {
-    //   const nuevosEpisodios = [];
-    //   for (let i = 0; i < this.podcasts.length; i++) {
-    //     const episodios = this.podcasts[i].episodios;
-    //     const lastEpisode = episodios[episodios.length - 1];
-    //     nuevosEpisodios.push(lastEpisode);
-    //   }
-    //   return nuevosEpisodios;
-    // },
     nuevosEpisodios() {
       for (let i = 0; i < this.podcasts.length; i++) {
         const episodios = this.podcasts[i].episodios;
@@ -169,6 +152,14 @@ export default {
       }
     },
   },
-  components: { CardVertical, Carousel, Deslizador },
+  created() {
+    setTimeout(() => {
+      // Cambiar esto
+      // if (!this.isLoggedIn) {
+      //   this.$router.push("/login");
+      // }
+      this.isLoading = false;
+    }, 1000);
+  }
 };
 </script>

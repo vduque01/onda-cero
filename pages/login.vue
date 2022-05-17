@@ -1,5 +1,6 @@
 <template>
   <div>
+    <splash-page :isLoading="isLoading"  />
     <h2>Iniciar sesión</h2>
     <p class="text-G7">Introduce tu usuario y contraseña</p>
     <div class="loginForm">
@@ -196,6 +197,7 @@ export default {
         contraseña: "",
       },
       estadoSwitch: "desactivado",
+      isLoading: true
     };
   },
   methods: {
@@ -216,6 +218,11 @@ export default {
         this.estadoSwitch = "desactivado";
       }
     },
+  },
+  created() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   },
 };
 </script>

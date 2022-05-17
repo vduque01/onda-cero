@@ -11,6 +11,7 @@
       solo_icono_medio: tamaño == 'solo_icono_medio',
       solo_icono_compacto: tamaño == 'solo_icono_compacto',
       solo_icono_pequeño: tamaño == 'solo_icono_pequeño',
+      activado: activado == true,
     }"
   >
     <slot />
@@ -19,7 +20,7 @@
 
 <script>
 export default {
-  props: ["tipo", "tamaño"],
+  props: ["tipo", "tamaño", "activado"],
 };
 </script>
 

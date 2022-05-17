@@ -16,7 +16,7 @@ export const state = () => {
 
 export const getters = {};
 
-//
+
 export const mutations = {
   addUser(state, newUser) {
     state.users.push({
@@ -28,11 +28,6 @@ export const mutations = {
     state.isLoggedIn = true;
   },
   checkUser(state, existentUser) {
-    // const isLoginCorrect = state.users.includes({
-    //   usuario: existentUser.usuario,
-    //   contraseña: existentUser.contraseña,
-    // });
-
     const isLoginCorrect = state.users.some(
       (user) =>
         ((user.usuario === existentUser.usuario) &&
