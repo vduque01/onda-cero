@@ -10,7 +10,7 @@
           </section-name>
           <p class="grande">Bienvenido, Víctor</p>
         </div>
-        <div class="carousel">Carousel</div>
+        <deslizador/>
 
         <div class="trending">
           <div class="section_header">
@@ -128,6 +128,8 @@
 <script>
 import { mapState } from "vuex";
 import CardVertical from "../components/CardVertical.vue";
+import Carousel from "../components/Deslizador.vue";
+import Deslizador from "../components/Deslizador.vue";
 export default {
   data() {
     return {
@@ -167,6 +169,6 @@ export default {
       }
     },
   },
-  components: { CardVertical },
+  components: { CardVertical, Carousel, Deslizador },
 };
 </script>

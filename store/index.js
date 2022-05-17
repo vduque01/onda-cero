@@ -9,6 +9,8 @@ export const state = () => {
     users: users,
     isLoggedIn: false,
     isPlaying: false,
+    isAsideVisible: false,
+    isAlertMessageVisible: false,
   };
 };
 
@@ -36,23 +38,28 @@ export const mutations = {
         ((user.usuario === existentUser.usuario) &&
         (user.contraseña === existentUser.contraseña))
     );
-
-    console.log(existentUser);
     
     if (isLoginCorrect) {
       // Poner lo que pasa si es correcto
       this.$router.push("/home");
     } else {
-      // Poner lo que pasa si es incorrecto
+      console.log("incorrecto")
+      state.isAlertMessageVisible = true
     }
-    console.log(isLoginCorrect);
 
-    // state.isLoggedIn = true;
   },
   reproducir(state) {
     state.isPlaying = true;
     console.log(state.isPlaying)
-  }
+  },
+  updateStatus(state) {
+    if (state.isAsideVisible == false) {
+      state.isAsideVisible = true;
+    } else {
+      state.isAsideVisible = false;
+    }
+    console.log(state.isAsideVisible)
+  },
 
 };
 

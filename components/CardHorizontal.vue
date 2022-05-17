@@ -38,15 +38,21 @@
 </template>
 
 <script>
-import {mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import Boton from "./Boton.vue";
 export default {
   components: { Boton },
   props: ["src", "texto1", "texto2"],
+  computed: {
+    ...mapState({
+      isSelectionVisible: (state) => state.isSelectionvisible,
+    }),
+  },
   methods: {
     ...mapMutations({
       reproducir: "reproducir",
     }),
+
   },
 };
 </script>
