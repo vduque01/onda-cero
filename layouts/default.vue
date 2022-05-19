@@ -1,6 +1,6 @@
 <template>
   <div class="reticula">
-    <menu-lateral/>
+    <!-- <menu-lateral/> -->
     <upper-menu>
       <svg
         width="32"

@@ -1,6 +1,6 @@
 <template>
   <div class="deslizador">
-    <div class="cards">
+    <!-- <div class="cards">
       <div
         class="card"
         v-for="(podcast, i) in podcasts.slice(
@@ -16,12 +16,23 @@
       <div class="control" @click="firstPosition()"></div>
       <div class="control" @click="secondPosition()"></div>
       <div class="control" @click="thirdPosition()"></div>
-    </div>
+    </div> -->
+
+    <VueSlickCarousel :arrows="true" :dots="true">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </VueSlickCarousel>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+// optional style for arrows & dots
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
   computed: {
     ...mapState({
