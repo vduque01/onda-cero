@@ -9,8 +9,8 @@
           </section-name>
           <p class="grande">Bienvenido, Víctor</p>
         </div>
-        <deslizador />
-        <div class="trending">
+        <deslizador/>
+        <div class="trending" >
           <div class="section_header">
             <h3>Lo más escuchado</h3>
             <nuxt-link to="/podcasts/trending">
@@ -33,7 +33,7 @@
             </nuxt-link>
           </div>
 
-          <div class="podcasts">
+          <vue-horizontal :button="false" class="podcasts">
             <div class="podcast" v-for="(podcast, i) in podcasts" :key="i">
               <nuxt-link :to="`/podcasts/${podcast.id}`">
                 <card-vertical
@@ -44,7 +44,7 @@
                 />
               </nuxt-link>
             </div>
-          </div>
+          </vue-horizontal>
         </div>
 
         <div class="new_episodes">
@@ -129,37 +129,46 @@
 
 <script>
 import { mapState } from "vuex";
+import VueHorizontal from "vue-horizontal";
 export default {
-  data() {
-    return {
-      isLoading: true,
-    };
-  },
-  name: "IndexPage",
-  computed: {
-    ...mapState({
-      podcasts: (state) => state.podcasts,
-      playlists: (state) => state.playlists,
-      isLoggedIn: (state) => state.isLoggedIn,
-    }),
-  },
-  methods: {
-    nuevosEpisodios() {
-      for (let i = 0; i < this.podcasts.length; i++) {
-        const episodios = this.podcasts[i].episodios;
-        const lastEpisode = episodios[episodios.length - 1];
-        return lastEpisode;
-      }
+    components: { VueHorizontal },
+    data() {
+        return {
+            isLoading: true,
+        };
     },
-  },
-  created() {
-    setTimeout(() => {
-      // Cambiar esto
-      // if (!this.isLoggedIn) {
-      //   this.$router.push("/login");
-      // }
-      this.isLoading = false;
-    }, 1000);
-  }
+    name: "IndexPage",
+    computed: {
+        ...mapState({
+            podcasts: (state) => state.podcasts,
+            playlists: (state) => state.playlists,
+            isLoggedIn: (state) => state.isLoggedIn,
+        }),
+    },
+    methods: {
+        nuevosEpisodios() {
+            for (let i = 0; i < this.podcasts.length; i++) {
+                const episodios = this.podcasts[i].episodios;
+                const lastEpisode = episodios[episodios.length - 1];
+                return lastEpisode;
+            }
+        },
+    },
+    created() {
+        setTimeout(() => {
+            // Cambiar esto
+            // if (!this.isLoggedIn) {
+            //   this.$router.push("/login");
+            // }
+            this.isLoading = false;
+        }, 1000);
+    },
 };
 </script>
+
+
+<style lang="scss" scoped>
+  .podcast{
+    margin-right:16px;
+  }
+</style>

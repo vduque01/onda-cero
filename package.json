@@ -9,13 +9,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@cycraft/vue-splide": "^0.3.5",
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
-    "swiper": "^7.0.7",
     "vue": "^2.6.14",
-    "vue-carousel": "^0.18.0",
+    "vue-horizontal": "^0.8.12",
     "vue-server-renderer": "^2.6.14",
-    "vue-slick-carousel": "^1.0.6",
     "vue-template-compiler": "^2.6.14"
   },
   "devDependencies": {

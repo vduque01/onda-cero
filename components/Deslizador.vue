@@ -1,78 +1,138 @@
 <template>
-  <div class="deslizador">
-    <!-- <div class="cards">
-      <div
-        class="card"
-        v-for="(podcast, i) in podcasts.slice(
-          podcasts.length - 4,
-          podcasts.length - 1
-        )"
-        :key="i"
-      >
+  <main>
+    <vue-horizontal
+      ref="horizontal"
+      class="horizontal"
+      :button="false"
+      @scroll-debounce="onScrollDebounce"
+    >
+      <div class="item" v-for="(podcast, i) in podcasts.slice(-3)" :key="i">
         <img :src="`${podcast.src}`" alt="" />
       </div>
-    </div>
-    <div class="controller">
-      <div class="control" @click="firstPosition()"></div>
-      <div class="control" @click="secondPosition()"></div>
-      <div class="control" @click="thirdPosition()"></div>
-    </div> -->
+    </vue-horizontal>
 
-    <VueSlickCarousel :arrows="true" :dots="true">
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-      <div>4</div>
-    </VueSlickCarousel>
-  </div>
+    <div class="pagination">
+      <div
+        class="dot"
+        :class="{ current: i - 1 === index }"
+        v-for="i in pages"
+        :key="i"
+        @click="onPageClick(i - 1)"
+      >
+        <div></div>
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
+import VueHorizontal from "vue-horizontal";
 import { mapState } from "vuex";
-import VueSlickCarousel from "vue-slick-carousel";
-import "vue-slick-carousel/dist/vue-slick-carousel.css";
-// optional style for arrows & dots
-import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 export default {
-  name: "MyComponent",
-  components: { VueSlickCarousel },
+  components: { VueHorizontal },
+  data() {
+    return {
+      width: 0,
+      index: 0,
+      pages: 0,
+    };
+  },
   computed: {
     ...mapState({
       podcasts: (state) => state.podcasts,
+      playlists: (state) => state.playlists,
+      isLoggedIn: (state) => state.isLoggedIn,
     }),
   },
-  data() {
-    return {};
+  methods: {
+    onScrollDebounce({ scrollWidth, width, left }) {
+      this.width = width;
+      this.index = Math.round(left / width);
+      this.pages = Math.round(scrollWidth / width);
+    },
+    onPageClick(i) {
+      this.$refs.horizontal.scrollToLeft(i * this.width);
+    },
   },
-  methods: {},
 };
 </script>
 
-<style lang="scss" scoped>
-.deslizador {
-  @apply flex flex-col items-center;
-  .controller {
-    @apply flex gap-1;
-    .control {
-      @apply rounded-full;
-      width: 8px;
-      height: 8px;
-      border: 2px solid white;
-      &.current {
-        @apply bg-white;
-      }
-    }
-  }
-  .cards {
-    .card {
-      width: 336px;
-      height: 252px;
-      img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
+<!-- Content Design -->
+<style scoped>
+.horizontal >>> .v-hl-container {
+  scroll-padding-left: 16px;
+  scroll-padding-right: 16px;
+}
+
+main {
+  transform: translateX(-16px);
+  left: -16px;
+  width: 368px;
+  padding-top: 32px;
+  padding-bottom: 12px;
+}
+.item {
+  height: 225px;
+  width: calc(100% - (16px + 16px));
+  box-sizing: content-box;
+}
+.item:first-child {
+  width: calc(100% - (16px));
+  padding-left: 16px;
+}
+
+.item:last-child {
+  width: calc(100% - (16px));
+  padding-right: 16px;
+}
+
+img {
+  object-fit: cover;
+}
+
+.content {
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  padding-top: 60%;
+}
+
+.title {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+</style>
+
+<!-- Pagination CSS -->
+<style scoped>
+.pagination {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  cursor: pointer;
+}
+
+.dot > div {
+  border-radius: 10px;
+  width: 12px;
+  height: 12px;
+  border: 3px solid white;
+}
+
+.dot:hover > div {
+  background: white;
+}
+
+.dot.current > div {
+  border: 3px solid white;
+  background-color: white;
 }
 </style>
